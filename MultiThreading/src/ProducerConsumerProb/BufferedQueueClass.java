@@ -16,13 +16,17 @@ public class BufferedQueueClass {
 	}
 	
 	
-	public synchronized void produceQueue(Integer num) {
+	public synchronized void produceQueue(Integer num) throws InterruptedException {
 		System.out.println("Inside the produceQueue");
-		if(queue.size()< maxsize) {
-		queue.add(num);
-		System.out.println("Added in queue" + queue);}
+		if(queue.size() == maxsize) {
+			System.out.println("Does not produced");
+			wait();
+		}
 		else {
-	     	System.out.println("Does not produced");
+			queue.add(num);
+	     	
+	     	System.out.println("Added in queue" + queue);
+	     	notify();
 
 		}
 	}
@@ -30,12 +34,14 @@ public class BufferedQueueClass {
 	
 	public synchronized void consumeQueue() {
 		System.out.println("Inside the ConsumeQueue");
-		if(!queue.isEmpty()) {
-		queue.poll();
-		System.out.println("Consumed in queue" + queue);
+		if(queue.isEmpty()) {
+			System.out.println("Does not consumed");
+		
 		}
 		else {
-			System.out.println("Does not consumed");
+			queue.poll();
+			System.out.println("Consumed in queue" + queue);
+			notify();
 
 		}
 	}

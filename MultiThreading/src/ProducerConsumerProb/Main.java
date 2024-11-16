@@ -8,12 +8,17 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		BufferedQueueClass queue = new BufferedQueueClass(10);
+		BufferedQueueClass queue = new BufferedQueueClass(5);
 		Thread t1 = new Thread(() -> {
 			List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13);
 		
 			for(int num:nums) {
-			queue.produceQueue(num);
+			try {
+				queue.produceQueue(num);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -29,7 +34,7 @@ public class Main {
 			
 			queue.consumeQueue();
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

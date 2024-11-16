@@ -5,7 +5,7 @@ public class MonitorLockExample {
 		
 		try {
 			System.out.println("Inside task1...");
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			System.out.println("Completed task1...");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

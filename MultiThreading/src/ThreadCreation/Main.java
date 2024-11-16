@@ -7,12 +7,12 @@ public class Main {
         SharedResource resource = new SharedResource();
         
         Thread producertask = new Thread(() -> {
-        	try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//        	try {
+//				Thread.sleep(2000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
         	resource.additem();
         	});
         
